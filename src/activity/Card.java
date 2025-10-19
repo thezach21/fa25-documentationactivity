@@ -1,4 +1,6 @@
-public record Card(Rank rank,Suit suit) {
+package activity;
+
+public record Card(Rank rank, Suit suit) {
     public enum Suit {
         HEARTS,
         SPADES,
