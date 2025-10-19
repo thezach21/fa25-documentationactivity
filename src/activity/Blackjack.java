@@ -2,16 +2,28 @@ package activity;
 
 import java.util.ArrayList;
 
+/**
+ * An implementation of {@link CardGame} that simulates a simplified game of Blackjack.
+ * {@code blackjack_rules.txt} should be consulted to see the rules of the game that are
+ * adhered to in the implementation of this class.
+ * @implNote This game does not include any betting. CSE116 does not endorse gambling!
+ */
 public class Blackjack extends CardGame {
 
     private final ArrayList<Card> playerHand;
     private final ArrayList<Card> dealerHand;
 
+    /**
+     * A constructor that initializes the player and dealer's hands.
+     */
     public Blackjack() {
         playerHand = new ArrayList<>();
         dealerHand = new ArrayList<>();
     }
 
+    /**
+     * Executes the functionality of the player's turn in Blackjack.
+     */
     private void playerTurn() {
         while (getTotalValue(playerHand) < 21 && getTotalValue(dealerHand) < 21) {
             reportScores(getTotalValue(playerHand),getTotalValue(dealerHand));
@@ -22,14 +34,32 @@ public class Blackjack extends CardGame {
             }
         }
     }
+
+    /**
+     * Executes the functionality of the dealer's turn in Blackjack.
+     */
     private void dealerTurn() {
         while (getTotalValue(dealerHand) < 16) {
             dealerHand.add(this.deck.drawCard());
         }
     }
+
+    /**
+     * Checks the values of the player and dealer's hands to determine the winner of the round.
+     * @return {@code true} if the player wins, {@code false} otherwise.
+     */
     private boolean evaluateWin() {
         return (getTotalValue(playerHand) >= getTotalValue(dealerHand) || getTotalValue(dealerHand) > 21) && getTotalValue(playerHand) <= 21;
     }
+
+    /**
+     * Determines the value of a {@link Card} according to the rules
+     * of Blackjack. In this case, numbered ranks (2-10) are directly
+     * converted to their respective number, face cards are converted to 10,
+     * and aces are converted to 11.
+     * @param card the {@link Card} to find the value of.
+     * @return the value of that card according to Blackjack rules.
+     */
     private int cardValue(Card card) {
         return switch (card.rank()) {
             case Card.Rank.TWO -> 2;
@@ -77,6 +107,7 @@ public class Blackjack extends CardGame {
         reportGameOverState(false,getTotalValue(playerHand),getTotalValue(dealerHand));
     }
 
+    //Run this to play a round of Blackjack!
     public static void main(String[] args) {
         Blackjack game = new Blackjack();
         game.playGame();
