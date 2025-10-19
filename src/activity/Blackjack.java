@@ -6,41 +6,31 @@ public class Blackjack extends CardGame {
 
     private final ArrayList<Card> playerHand;
     private final ArrayList<Card> dealerHand;
-    boolean playerTurn;
 
     public Blackjack() {
         playerHand = new ArrayList<>();
         dealerHand = new ArrayList<>();
     }
 
-    @Override
-    public void playGame() {
-        this.deck.shuffle();
-        playerHand.add(this.deck.drawCard());
-        playerHand.add(this.deck.drawCard());
-        dealerHand.add(this.deck.drawCard());
-        playerTurn = true;
+    private void playerTurn() {
         while (getTotalValue(playerHand) < 21 && getTotalValue(dealerHand) < 21) {
             reportScores(getTotalValue(playerHand),getTotalValue(dealerHand));
             if (askPlayer("Draw another card?")) {
                 playerHand.add(this.deck.drawCard());
             } else {
-                break;
+                return;
             }
-            playerTurn = !playerTurn;
         }
+    }
+    private void dealerTurn() {
         while (getTotalValue(dealerHand) < 16) {
             dealerHand.add(this.deck.drawCard());
         }
-        if ((getTotalValue(playerHand) >= getTotalValue(dealerHand) || getTotalValue(dealerHand) > 21) && getTotalValue(playerHand) <= 21) {
-            win();
-        } else {
-            lose();
-        }
     }
-
-    @Override
-    public int getCardValue(Card card) {
+    private boolean evaluateWin() {
+        return (getTotalValue(playerHand) >= getTotalValue(dealerHand) || getTotalValue(dealerHand) > 21) && getTotalValue(playerHand) <= 21;
+    }
+    private int cardValue(Card card) {
         return switch (card.rank()) {
             case Card.Rank.TWO -> 2;
             case Card.Rank.THREE -> 3;
@@ -56,6 +46,28 @@ public class Blackjack extends CardGame {
     }
 
     @Override
+    public void playGame() {
+        this.deck.shuffle();
+        playerHand.add(this.deck.drawCard());
+        playerHand.add(this.deck.drawCard());
+        dealerHand.add(this.deck.drawCard());
+        playerTurn();
+        if (getTotalValue(playerHand) <= 21) {
+            dealerTurn();
+        }
+        if (evaluateWin()) {
+            win();
+        } else {
+            lose();
+        }
+    }
+
+    @Override
+    public int getCardValue(Card card) {
+        return cardValue(card);
+    }
+
+    @Override
     public void win() {
         reportGameOverState(true,getTotalValue(playerHand),getTotalValue(dealerHand));
     }
@@ -63,5 +75,10 @@ public class Blackjack extends CardGame {
     @Override
     public void lose() {
         reportGameOverState(false,getTotalValue(playerHand),getTotalValue(dealerHand));
+    }
+
+    public static void main(String[] args) {
+        Blackjack game = new Blackjack();
+        game.playGame();
     }
 }
