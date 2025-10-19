@@ -1,4 +1,4 @@
-public class BlackJack extends CardGame {
+public class Blackjack extends CardGame {
 
     @Override
     public void playGame() {
