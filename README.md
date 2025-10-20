@@ -1,4 +1,4 @@
-# Lab Activity 2 — Documentation
+# Lab Activity 2 — Documentation — ANSWER KEY
 Your goal in this activity is to implement a child class of a preexisting
 class by reading documentation and specification to know what given methods
 to use and how to use them. The code you need to write to get the game working
