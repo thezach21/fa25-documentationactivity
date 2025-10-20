@@ -25,6 +25,7 @@ public class Blackjack extends CardGame {
      * Executes the functionality of the player's turn in Blackjack.
      */
     private void playerTurn() {
+        System.out.println("Beginning player turn");
         while (getTotalValue(this.playerHand) < 21 && getTotalValue(this.dealerHand) < 21) {
             reportScores(getTotalValue(this.playerHand),getTotalValue(this.dealerHand));
             if (askPlayer("Draw another card?")) {
@@ -33,12 +34,14 @@ public class Blackjack extends CardGame {
                 return;
             }
         }
+        System.out.println("Hand total is at least 21, ending player turn");
     }
 
     /**
      * Executes the functionality of the dealer's turn in Blackjack.
      */
     private void dealerTurn() {
+        System.out.println("Beginning dealer turn");
         while (getTotalValue(this.dealerHand) < 16) {
             this.dealerHand.add(this.deck.drawCard());
         }
