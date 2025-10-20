@@ -1,0 +1,30 @@
+Blackjack, as defined here, is a simplified spin on the classic casino card game.
+
+In Blackjack, the player attempts to assemble a "hand" of cards with as high a value as possible
+without going over 21, by drawing cards until they decide to stop. Once the player has finished
+assembling their hand, the dealer draws cards until their hand has a value of at least 16. The
+winner is then whoever has the highest hand value, unless the player or dealer exceeded a hand
+value of 21.
+
+GAME START & PLAYER TURN
+When a round of Blackjack begins, the player automatically draws two cards and the dealer draws one.
+The player turn then begins, and the player can draw as many cards as they wish until their hand's value
+reaches or exceeds 21. Importantly, the player needs to be told both their own score and the score of the
+dealer's one card before each time they decide whether to draw a card. The player can at any time decide
+to stop drawing cards, which then locks their hand value and progresses the game to the dealer's turn.
+
+DEALER TURN
+During the dealer's turn, the dealer draws cards until their hand's value is at least 16 then stops.
+
+WINNING & LOSING
+If the player draws a card that results in their hand's value exceeding 21, they lose. In this case,
+the dealer's turn can be skipped and the game ends immediately. If the player instead ends their turn
+with a score less than or equal to 21 and the dealer draws a card resulting in their score exceeding 21,
+the player wins. If neither of these cases happens, the winner is whoever has a greater hand value. If
+the two hand values are the same, the player wins.
+Note: This means that a tie is impossible according to these rules, and that a game can end immediately
+without ever progressing to the player turn (if their first two cards have a combined value of 21).
+
+CARD VALUES
+Cards with a number rank (2-10) have a value equal to that number. Face cards (Jack, Queen, King) have a
+value of 10. Aces have a value of 11.

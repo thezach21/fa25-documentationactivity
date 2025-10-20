@@ -17,18 +17,18 @@ public class Blackjack extends CardGame {
      * A constructor that initializes the player and dealer's hands.
      */
     public Blackjack() {
-        playerHand = new ArrayList<>();
-        dealerHand = new ArrayList<>();
+        this.playerHand = new ArrayList<>();
+        this.dealerHand = new ArrayList<>();
     }
 
     /**
      * Executes the functionality of the player's turn in Blackjack.
      */
     private void playerTurn() {
-        while (getTotalValue(playerHand) < 21 && getTotalValue(dealerHand) < 21) {
-            reportScores(getTotalValue(playerHand),getTotalValue(dealerHand));
+        while (getTotalValue(this.playerHand) < 21 && getTotalValue(this.dealerHand) < 21) {
+            reportScores(getTotalValue(this.playerHand),getTotalValue(this.dealerHand));
             if (askPlayer("Draw another card?")) {
-                playerHand.add(this.deck.drawCard());
+                this.playerHand.add(this.deck.drawCard());
             } else {
                 return;
             }
@@ -39,8 +39,8 @@ public class Blackjack extends CardGame {
      * Executes the functionality of the dealer's turn in Blackjack.
      */
     private void dealerTurn() {
-        while (getTotalValue(dealerHand) < 16) {
-            dealerHand.add(this.deck.drawCard());
+        while (getTotalValue(this.dealerHand) < 16) {
+            this.dealerHand.add(this.deck.drawCard());
         }
     }
 
@@ -49,7 +49,8 @@ public class Blackjack extends CardGame {
      * @return {@code true} if the player wins, {@code false} otherwise.
      */
     private boolean evaluateWin() {
-        return (getTotalValue(playerHand) >= getTotalValue(dealerHand) || getTotalValue(dealerHand) > 21) && getTotalValue(playerHand) <= 21;
+        return (getTotalValue(this.playerHand) >= getTotalValue(this.dealerHand) || getTotalValue(this.dealerHand) > 21)
+                && getTotalValue(this.playerHand) <= 21;
     }
 
     /**
@@ -78,11 +79,11 @@ public class Blackjack extends CardGame {
     @Override
     public void playGame() {
         this.deck.shuffle();
-        playerHand.add(this.deck.drawCard());
-        playerHand.add(this.deck.drawCard());
-        dealerHand.add(this.deck.drawCard());
+        this.playerHand.add(this.deck.drawCard());
+        this.playerHand.add(this.deck.drawCard());
+        this.dealerHand.add(this.deck.drawCard());
         playerTurn();
-        if (getTotalValue(playerHand) <= 21) {
+        if (getTotalValue(this.playerHand) <= 21) {
             dealerTurn();
         }
         if (evaluateWin()) {
@@ -99,12 +100,12 @@ public class Blackjack extends CardGame {
 
     @Override
     public void win() {
-        reportGameOverState(true,getTotalValue(playerHand),getTotalValue(dealerHand));
+        reportGameOverState(true,getTotalValue(this.playerHand),getTotalValue(this.dealerHand));
     }
 
     @Override
     public void lose() {
-        reportGameOverState(false,getTotalValue(playerHand),getTotalValue(dealerHand));
+        reportGameOverState(false,getTotalValue(this.playerHand),getTotalValue(this.dealerHand));
     }
 
     //Run this to play a round of Blackjack!
