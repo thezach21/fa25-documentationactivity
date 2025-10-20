@@ -30,6 +30,9 @@ the methods you need to use are contained in either `Blackjack.java` or
 You should try to read through everything and try to figure it out, but if you are having
 some trouble feel free to reference the hints provided below.
 
+When you get it working, try writing some Javadoc comments of your own on the
+methods you wrote!
+
 ### Hints
 1. You may not use all the provided methods but the provided methods should
 be doing most of the work for you. Always think carefully about what you need
