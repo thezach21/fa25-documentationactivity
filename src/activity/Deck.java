@@ -52,4 +52,12 @@ public class Deck {
     public Card drawCard() {
         return cards.removeLast();
     }
+
+    /**
+     * Removes and returns the bottom card of the deck.
+     * @return the removed bottom card of the deck
+     */
+    public Card drawFromBottom() {
+        return cards.removeFirst();
+    }
 }

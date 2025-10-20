@@ -21,7 +21,8 @@ If the player draws a card that results in their hand's value exceeding 21, they
 the dealer's turn can be skipped and the game ends immediately. If the player instead ends their turn
 with a score less than or equal to 21 and the dealer draws a card resulting in their score exceeding 21,
 the player wins. If neither of these cases happens, the winner is whoever has a greater hand value. If
-the two hand values are the same, the player wins.
+the two hand values are the same, the player wins. When the winner is decided, the game over state
+should be told to the player alongside the final hand values of the player and the dealer.
 Note: This means that a tie is impossible according to these rules, and that a game can end immediately
 without ever progressing to the player turn (if their first two cards have a combined value of 21).
 

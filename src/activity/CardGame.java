@@ -16,7 +16,7 @@ public abstract class CardGame {
     /**
      * The {@link Deck} of cards that should be used by the game.
      */
-    protected final Deck deck;
+    protected Deck deck;
 
     /**
      * A simple constructor that creates a {@code CardGame} object with a new {@link Deck} of cards.
@@ -50,6 +50,13 @@ public abstract class CardGame {
      * according to the rules of the game.
      */
     public abstract void lose();
+
+    /**
+     * Replaces the game's current deck of cards with a new one.
+     */
+    public void replaceDeck() {
+        this.deck = new Deck();
+    }
 
     /**
      * Calculated the total value of an {@link ArrayList} of {@link Card} objects
@@ -93,7 +100,8 @@ public abstract class CardGame {
 
     /**
      * Prompts the player with the given message, then takes yes or no input from the player
-     * and returns the result. If the player inputs anything other than 'y' for yes or 'n'
+     * and returns the result. While input is being taken, the player must type their
+     * response and press enter. If the player inputs anything other than 'y' for yes or 'n'
      * for no, they are prompted again.
      * @param message the message to be printed to {@code System.in} to prompt the player with a yes or no question.
      * @return the player's yes or no answer as a {@code boolean}.
